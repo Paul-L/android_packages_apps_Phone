@@ -1962,6 +1962,13 @@ public class InCallScreen extends Activity
         // Make sure we update the poke lock and wake lock when certain
         // phone state changes occur.
         mApp.updateWakeState();
+
+
+        // Fix for low in-call volume bug.
+        // Reset the audio volume stream when phone state is OFFHOOK.
+        if (state == PhoneConstants.State.OFFHOOK) {
+            PhoneUtils.resetAudioStreamVolume();
+        }
     }
 
     /**
